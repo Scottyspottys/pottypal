@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Scotty’s Pottys – PottyPal</title>
+  <meta name="theme-color" content="#0b3c4b">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="app-header">
+    <img src="assets/logo.png" alt="Scotty’s Pottys Logo" class="logo">
+    <div class="titles">
+      <h1>PottyPal</h1>
+      <p class="subtitle">by Scotty’s Pottys – Book a potty in seconds</p>
+    </div>
+    <button id="installBtn" class="btn ghost">Install</button>
+  </header>
+
+  <main class="container">
+    <form id="orderForm" class="card">
+      <h2>Billing Information</h2>
+      <div class="grid">
+        <label>Name<input required name="name" autocomplete="name"></label>
+        <label>Company (optional)<input name="company" autocomplete="organization"></label>
+        <label>Billing Address<textarea required name="billingAddress" rows="2" placeholder="Street, City, Province, Postal Code" autocomplete="street-address"></textarea></label>
+        <label>Email<input required name="email" type="email" autocomplete="email"></label>
+        <label>Phone<input required name="phone" type="tel" autocomplete="tel"></label>
+      </div>
+      <label class="row"><input type="checkbox" id="rememberMe" checked> Remember for next time</label>
+
+      <h2>Job Details</h2>
+      <div class="grid">
+        <label>Delivery Location<textarea required id="jobLocation" name="jobLocation" rows="2" placeholder="Address or Plus Code"></textarea></label>
+        <label>Date Required<input required id="dateNeeded" name="dateNeeded" type="date" min="2025-09-25"></label>
+        <label>How many units?<input required name="units" type="number" min="1" value="1"></label>
+      </div>
+
+      <fieldset class="choices">
+        <legend>Choose unit type</legend>
+        <label class="radio">
+          <input type="radio" name="unitType" value="standard" checked>
+          <span>Standard with hand sanitizer — $170 / month</span>
+        </label>
+        <label class="radio">
+          <input type="radio" name="unitType" value="flush">
+          <span>Flush with sink — $230 / month (required by law in some situations)</span>
+        </label>
+      </fieldset>
+
+      <label>Notes (optional)<textarea name="notes" rows="3" placeholder="Gate/lock codes, site contact, special instructions…"></textarea></label>
+
+      <div id="geoNotice" class="notice hidden"></div>
+
+      <div class="actions">
+        <button type="submit" class="btn primary">Submit Order</button>
+        <button type="button" id="clearBtn" class="btn danger ghost">Clear Saved Info</button>
+      </div>
+
+      <p class="small">By submitting, you agree to standard rental terms (monthly billing, service schedule, damage/loss responsibility).</p>
+    </form>
+
+    <section class="card help">
+      <h3>How this works</h3>
+      <ul>
+        <li><strong>No credit card required.</strong> We’ll confirm by email/text.</li>
+        <li>Your billing info is saved <em>on your device</em> for faster reorders.</li>
+        <li>Deliveries are normally within 30 km of Chesley, ON. We’ll flag anything farther.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Scotty’s Pottys. PottyPal PWA.</p>
+  </footer>
+</body>
+</html>

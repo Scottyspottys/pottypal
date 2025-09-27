@@ -1,0 +1,20 @@
+{
+  "name": "Scotty\u2019s Pottys \u2013 PottyPal",
+  "short_name": "PottyPal",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#e9f2f5",
+  "theme_color": "#0b3c4b",
+  "icons": [
+    {
+      "src": "assets/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
