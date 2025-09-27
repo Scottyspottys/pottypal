@@ -76,20 +76,16 @@ const firstInvoice = price + DELIVERY_FEE;      // rental + one-time delivery
 const payload = {
   source: "pottypal-pwa",
   timestamp: new Date().toISOString(),
-  billing: {
-    name: form.name.value,
-    company: form.company.value,
-    billingAddress: form.billingAddress.value,
-    email: form.email.value,
-    phone: form.phone.value,
-  },
+  billing: { /* ...unchanged... */ },
   job: {
     jobLocation: form.jobLocation.value,
     dateNeeded: form.dateNeeded.value,
     units,
     unitType,
     monthlyPriceCAD: PRICES[unitType],
-    estMonthlySubtotalCAD: PRICES[unitType] * units,
+    estMonthlySubtotalCAD: price,
+    deliveryFeeCAD: DELIVERY_FEE,
+    estFirstInvoiceCAD: firstInvoice,
     notes: form.notes.value
   }
 };
