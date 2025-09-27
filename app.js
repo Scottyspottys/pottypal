@@ -1,5 +1,6 @@
 // --- Config ---
 const PRICES = { standard: 170, flush: 230 };
+const DELIVERY_FEE = 20; // one-time
 const ENDPOINT_URL = ""; // optional webhook URL (Apps Script etc.)
 
 // Install PWA button behavior (Android shows prompt; iOS gets a tip)
