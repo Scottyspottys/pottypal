@@ -1,4 +1,39 @@
+// Install PWA button behavior
+let deferredPrompt = null;
+const installBtn = document.getElementById("installBtn");
 
+// hide by default
+if (installBtn) installBtn.style.display = "none";
+
+// Android/Chromium: show when event fires
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if (installBtn) installBtn.style.display = "inline-flex";
+});
+
+installBtn?.addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  installBtn.style.display = "none";
+});
+
+// iOS hint (no API)
+document.addEventListener("DOMContentLoaded", () => {
+  const header = document.querySelector(".app-header");
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
+  if (isIOS && !isStandalone && header) {
+    const tip = document.createElement("div");
+    tip.className = "notice";
+    tip.style.marginLeft = "auto";
+    tip.style.fontSize = "13px";
+    tip.textContent = "On iPhone: Share → Add to Home Screen to install";
+    header.appendChild(tip);
+  }
+});
 const CHESLEY = { lat: 44.301, lng: -81.102 };
 const DELIVERY_RADIUS_KM = 30;
 const PRICES = { standard: 170, flush: 230 };
