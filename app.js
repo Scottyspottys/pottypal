@@ -66,9 +66,10 @@ function clearBilling() {
 // --- Submit handler (no radius logic) ---
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const units = Math.max(1, parseInt(form.units.value || "1", 10));
-  const unitType = form.unitType.value;
-  const price = PRICES[unitType] * units;
+ const units = Math.max(1, parseInt(form.units.value || "1", 10));
+const unitType = form.unitType.value;
+const price = PRICES[unitType] * units;         // monthly subtotal (rental only)
+const firstInvoice = price + DELIVERY_FEE;      // rental + one-time delivery
 
   saveBilling();
 
