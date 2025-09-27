@@ -71,26 +71,26 @@ form.addEventListener("submit", async (e) => {
 
   saveBilling();
 
-  const payload = {
-    source: "pottypal-pwa",
-    timestamp: new Date().toISOString(),
-    billing: {
-      name: form.name.value,
-      company: form.company.value,
-      billingAddress: form.billingAddress.value,
-      email: form.email.value,
-      phone: form.phone.value,
-    },
-    job: {
-      jobLocation: form.jobLocation.value,
-      dateNeeded: form.dateNeeded.value,
-      units,
-      unitType,
-      monthlyPriceCAD: PRICES[unitType],
-      estMonthlySubtotalCAD: price,
-      notes: form.notes.value
-    }
-  };
+const payload = {
+  source: "pottypal-pwa",
+  timestamp: new Date().toISOString(),
+  billing: {
+    name: form.name.value,
+    company: form.company.value,
+    billingAddress: form.billingAddress.value,
+    email: form.email.value,
+    phone: form.phone.value,
+  },
+  job: {
+    jobLocation: form.jobLocation.value,
+    dateNeeded: form.dateNeeded.value,
+    units,
+    unitType,
+    monthlyPriceCAD: PRICES[unitType],
+    estMonthlySubtotalCAD: PRICES[unitType] * units,
+    notes: form.notes.value
+  }
+};
 
   try {
     if (ENDPOINT_URL) {
