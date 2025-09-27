@@ -130,10 +130,36 @@ form.addEventListener("submit", async (e) => {
       loadBilling();
       clearNotice();
     } else {
-      const subject = encodeURIComponent("New Scotty’s Pottys Order via PottyPal");
-      const body = encodeURIComponent(JSON.stringify(payload, null, 2));
-      window.location.href = `mailto:scottyspottys11@gmail.com?subject=${subject}&body=${body}`;
-    }
+  // Build a clean, human-readable email body (no braces)
+  const pretty = [
+    "NEW POTTYPAL ORDER",
+    "------------------------------",
+    `Name: ${form.name.value}`,
+    `Company: ${form.company.value || "-"}`,
+    `Billing Address: ${form.billingAddress.value}`,
+    `Email: ${form.email.value}`,
+    `Phone: ${form.phone.value}`,
+    "",
+    "JOB DETAILS",
+    "------------------------------",
+    `Delivery Location: ${form.jobLocation.value}`,
+    `Date Required: ${form.dateNeeded.value}`,
+    `Units: ${units}`,
+    `Unit Type: ${unitType === "standard" ? "Standard (w/ sanitizer) – $170/mo" : "Flush (w/ sink) – $230/mo"}`,
+    `Est. Monthly Subtotal: $${price.toFixed(2)} CAD`,
+    "",
+    `Notes: ${form.notes.value || "-"}`,
+    "",
+    "SYSTEM",
+    "------------------------------",
+    `Radius note: Checked client-side against ~${DELIVERY_RADIUS_KM} km from Chesley`,
+    `Submitted: ${new Date().toLocaleString()}`
+  ].join("\n");
+
+  const subject = encodeURIComponent("New Scotty’s Pottys Order via PottyPal");
+  const body = encodeURIComponent(pretty);
+  window.location.href = `mailto:scottyspottys11@gmail.com?subject=${subject}&body=${body}`;
+}
   } catch (err) {
     alert("Sorry—couldn’t submit right now. Please try again or call 519-706-6000.");
   }
