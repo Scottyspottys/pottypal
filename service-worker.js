@@ -1,5 +1,5 @@
 
-const CACHE = "pottypal-v4"; // bump version
+const CACHE = "pottypal-v6"; // bump this version
 const ASSETS = ["./","./index.html","./styles.css","./app.js","./manifest.json","./assets/logo.png"];
 self.addEventListener("install", e => e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
 self.addEventListener("activate", e => e.waitUntil(caches.keys().then(keys=>Promise.all(keys.map(k => (k!==CACHE && caches.delete(k)))))));
